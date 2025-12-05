@@ -19,12 +19,51 @@ interface Particle {
 
 const PARTICLE_COUNT = 60;
 
+// Enhanced Helper to safely get env vars from various build tools
+const getEnv = (key: string) => {
+  let val = '';
+  
+  // 1. Try Vite (import.meta.env) - Safe check
+  try {
+    // @ts-ignore
+    if (typeof import.meta !== 'undefined' && import.meta.env) {
+       // @ts-ignore
+       val = import.meta.env[`VITE_${key}`] || import.meta.env[key];
+    }
+  } catch (e) {}
+
+  if (val) return val;
+
+  // 2. Try Node/CRA/Next (process.env)
+  try {
+    if (typeof process !== 'undefined' && process.env) {
+      val = process.env[`REACT_APP_${key}`] || 
+            process.env[`VITE_${key}`] || 
+            process.env[`NEXT_PUBLIC_${key}`] || 
+            process.env[key];
+    }
+  } catch (e) {}
+  
+  return val || '';
+};
+
 const App: React.FC = () => {
-  // Config State
-  const [settings, setSettings] = useState<AppSettings>({
-    apiKey: '',
-    baseUrl: '', // Empty defaults to constants in service
-    model: ''    // Empty defaults to constants in service
+  // Config State - Initialize from LocalStorage -> Env Vars
+  const [settings, setSettings] = useState<AppSettings>(() => {
+    // 1. Try Local Storage first (User override)
+    try {
+      const saved = localStorage.getItem('couplet_settings');
+      if (saved) return JSON.parse(saved);
+    } catch(e) {
+      console.warn("Failed to parse settings from local storage");
+    }
+
+    // 2. Fallback to Env Vars (Default)
+    return {
+      apiKey: getEnv('API_KEY'),
+      baseUrl: getEnv('API_BASE_URL'), 
+      model: getEnv('API_MODEL')
+    };
   });
   
   const [showSettings, setShowSettings] = useState(false);
@@ -43,6 +82,13 @@ const App: React.FC = () => {
       delay: Math.random() * 5,
     }));
   }, []);
+
+  // Save settings handler
+  const handleSaveSettings = (newSettings: AppSettings) => {
+    setSettings(newSettings);
+    localStorage.setItem('couplet_settings', JSON.stringify(newSettings));
+    setShowSettings(false);
+  };
 
   const handleProcess = async (inputName: string) => {
     if (!settings.apiKey) {
@@ -69,7 +115,6 @@ const App: React.FC = () => {
         setCouplet(result);
         
         // 2. Trigger animation to "visible" state in next tick
-        // This ensures the CSS transition actually plays
         setTimeout(() => {
           setStep(AppStep.COMPLETE);
         }, 100);
@@ -143,7 +188,7 @@ const App: React.FC = () => {
       {/* --- Inputs (Z-40) --- */}
       <div 
         className={`
-          absolute top-1/2 mt-32 md:mt-44
+          absolute bottom-16 md:top-1/2 md:bottom-auto md:mt-44
           z-40 transition-all duration-500 ease-out w-full max-w-md px-6
           ${isAnimating || isComplete ? 'opacity-0 scale-90 pointer-events-none' : 'opacity-100 scale-100'}
         `}
@@ -163,10 +208,7 @@ const App: React.FC = () => {
       <ApiKeyModal 
         isOpen={showSettings} 
         onClose={() => setShowSettings(false)} 
-        onSave={(newSettings) => {
-          setSettings(newSettings);
-          setShowSettings(false);
-        }}
+        onSave={handleSaveSettings}
         initialSettings={settings}
       />
     </div>

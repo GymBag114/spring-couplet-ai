@@ -10,7 +10,7 @@ export interface CoupletData {
   hengpi: string;
 }
 
-export interface DeepSeekResponse {
+export interface ModelResponse {
   choices: {
     message: {
       content: string;

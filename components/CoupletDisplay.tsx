@@ -91,7 +91,7 @@ export const CoupletDisplay: React.FC<CoupletDisplayProps> = ({ data, visible, o
 
       {/* Reset Button - Positioned exactly where Input Box was */}
       <div 
-        className="absolute top-1/2 mt-32 md:mt-44 w-full max-w-md px-6 flex justify-center pointer-events-auto z-40"
+        className="absolute bottom-16 md:top-1/2 md:bottom-auto md:mt-44 w-full max-w-md px-6 flex justify-center pointer-events-auto z-40"
       >
         <div 
            className="w-full transition-opacity duration-1000 ease-in-out delay-700"
@@ -135,7 +135,7 @@ const VerticalScroll: React.FC<{ text: string }> = ({ text }) => {
   return (
     <div className="relative group">
       {/* Main Paper Body */}
-      <div className="bg-[#9e1c1c] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-x-[2px] border-yellow-900/30 w-20 md:w-28 min-h-[380px] md:min-h-[480px] flex justify-center items-center pointer-events-auto relative overflow-hidden">
+      <div className="bg-[#9e1c1c] shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-x-[2px] border-yellow-900/30 w-20 md:w-28 min-h-[320px] md:min-h-[480px] flex justify-center items-center pointer-events-auto relative overflow-hidden">
           
           <CloudPattern />
           

@@ -1,5 +1,5 @@
 {
-  "name": "Spring Couplet AI",
-  "description": "A traditional Chinese New Year couplet generator powered by DeepSeek AI. It intelligently parses names and generates personalized poetic couplets.",
+  "name": "Spring Couplet AI | 智创春联",
+  "description": "一个由大语言模型驱动的传统春节对联生成器。它能够智能解析姓名，并生成个性化的诗意对联",
   "requestFramePermissions": []
 }
