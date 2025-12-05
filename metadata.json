@@ -1,0 +1,5 @@
+{
+  "name": "Spring Couplet AI",
+  "description": "A traditional Chinese New Year couplet generator powered by DeepSeek AI. It intelligently parses names and generates personalized poetic couplets.",
+  "requestFramePermissions": []
+}
