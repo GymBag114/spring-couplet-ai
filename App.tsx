@@ -174,7 +174,7 @@ const App: React.FC = () => {
           className={`
             relative w-48 h-48 md:w-64 md:h-64 bg-rice-paper doufang-diamond flex items-center justify-center
             border-4 border-yellow-800/40 
-            ${isAnimating ? 'shadow-[0_0_100px_rgba(251,191,36,0.5)]' : 'shadow-2xl'}
+            ${isAnimating ? 'animate-breathe-diamond' : 'shadow-2xl'}
           `}
         >
           <div className="doufang-text">
