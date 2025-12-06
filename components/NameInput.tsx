@@ -34,14 +34,14 @@ export const NameInput: React.FC<NameInputProps> = ({ onSubmit, isLoading }) => 
               onBlur={() => setIsFocused(false)}
               placeholder="请输入姓名..."
               disabled={isLoading}
-              className="flex-grow bg-transparent border-none outline-none text-center text-xl text-stone-100 placeholder-stone-500 font-serif tracking-widest"
+              className="flex-grow min-w-0 bg-transparent border-none outline-none text-center text-xl text-stone-100 placeholder-stone-500 font-serif tracking-widest"
               maxLength={10}
             />
             
             <button
               type="submit"
               disabled={isLoading || !name.trim()}
-              className="ml-2 w-12 h-12 bg-red-800 hover:bg-red-700 rounded-full flex items-center justify-center text-yellow-100 transition-all disabled:opacity-50 disabled:grayscale"
+              className="ml-2 w-12 h-12 flex-shrink-0 bg-red-800 hover:bg-red-700 rounded-full flex items-center justify-center text-yellow-100 transition-all disabled:opacity-50 disabled:grayscale"
             >
               {isLoading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />

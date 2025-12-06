@@ -101,11 +101,9 @@ pnpm run build
 ```bash
 pnpm run preview
 ```
-
-### 部署到Vercel（推荐）
+### 部署到Github Pages（可选）
 ```bash
-pnpm install -g vercel
-vercel --prod
+pnpm run deploy
 ```
 
 ## 🤖 AI工作原理

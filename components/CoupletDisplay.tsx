@@ -52,7 +52,7 @@ export const CoupletDisplay: React.FC<CoupletDisplayProps> = ({ data, visible, o
             {/* Inner Gold Border */}
             <div className="absolute inset-1 border border-yellow-500/20 pointer-events-none"></div>
             
-            <span className="font-calligraphy text-4xl md:text-5xl text-stone-950 tracking-[0.2em] block relative z-10 drop-shadow-[0_1px_1px_rgba(255,215,0,0.3)]">
+            <span className="font-calligraphy text-4xl md:text-5xl text-stone-950 tracking-[0.2em] block relative z-10 drop-shadow-[0_1px_1px_rgba(255,215,0,0.3)] whitespace-nowrap">
               {data.hengpi}
             </span>
           </div>
@@ -115,7 +115,7 @@ export const CoupletDisplay: React.FC<CoupletDisplayProps> = ({ data, visible, o
               </span>
 
               {/* Icon Button (Mimics Submit Button) */}
-              <div className="ml-2 w-12 h-12 bg-red-800 group-hover:bg-red-700 rounded-full flex items-center justify-center text-yellow-100 transition-all">
+              <div className="ml-2 w-12 h-12 flex-shrink-0 bg-red-800 group-hover:bg-red-700 rounded-full flex items-center justify-center text-yellow-100 transition-all">
                  <RefreshCw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-700" />
               </div>
             </div>
@@ -151,7 +151,7 @@ const VerticalScroll: React.FC<{ text: string }> = ({ text }) => {
           </div>
 
           {/* Text Content */}
-          <div className="writing-vertical-rl text-center font-calligraphy text-4xl md:text-5xl text-stone-950 leading-[1.6] tracking-[0.1em] z-10 py-10 drop-shadow-[0_1px_0_rgba(255,215,0,0.2)]">
+          <div className="writing-vertical-rl text-center font-calligraphy text-4xl md:text-5xl text-stone-950 leading-[1.6] tracking-[0.1em] z-10 py-10 drop-shadow-[0_1px_0_rgba(255,215,0,0.2)] whitespace-nowrap">
             {text}
           </div>
       </div>
